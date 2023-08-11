@@ -50,7 +50,7 @@ public class Estado extends Movimiento {
     @Override
     public int Ataque() {
         Random r = new Random();
-        int random = r.nextInt(1, 100);
+        int random = 1+r.nextInt(100);
         return random;
     }
 

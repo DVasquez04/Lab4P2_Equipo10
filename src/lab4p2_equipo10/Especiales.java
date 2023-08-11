@@ -57,7 +57,7 @@ public class Especiales extends Movimiento {
     @Override
     public int Ataque() {
         Random r = new Random();
-        int random = r.nextInt(100, 500);
+        int random =100+r.nextInt(500);
         return random;
     }
 

@@ -59,7 +59,7 @@ public class Fisicos extends Movimiento {
     @Override
     public int Ataque() {
         Random r = new Random();
-        int random = r.nextInt(1, 50);
+        int random = 1 + r.nextInt(50);
         return random;
     }
 
