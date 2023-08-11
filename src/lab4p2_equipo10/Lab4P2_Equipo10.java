@@ -307,6 +307,7 @@ public class Lab4P2_Equipo10 {
                 }//fin default
             }//fin switch
         }//fin while
+        System.out.println("ola");
     }//fin main
 
     public static void Entrenar(Pokemon p) throws Exception {
