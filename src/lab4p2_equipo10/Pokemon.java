@@ -14,6 +14,7 @@ public class Pokemon {
     protected int nivel;
     protected int experiencia;
     protected int subir_experiencia;
+    protected int barritaAzul;
     protected Movimiento[] movimientos = new Movimiento[4];
     protected int puntosVida;
     protected int puntosAtaque;
@@ -25,7 +26,7 @@ public class Pokemon {
     public Pokemon() {
     }
 
-    public Pokemon(String especie, int nivel, int experiencia, int subir_experiencia, int puntosVida, int puntosAtaque, int puntosDefensa, int puntosEspecial, int puntosVelocidad, String estado) throws Exception {
+    public Pokemon(String especie, int nivel, int experiencia, int subir_experiencia, int puntosVida, int puntosAtaque, int puntosDefensa, int puntosEspecial, int puntosVelocidad, String estado, int barritaAzul) throws Exception {
         this.especie = especie;
         if (nivel > 1) {
             this.nivel = nivel;
@@ -68,7 +69,7 @@ public class Pokemon {
         } else {
             throw new Exception();
         }
-
+        this.barritaAzul = barritaAzul;
         this.estado = estado;
     }
 
@@ -197,6 +198,14 @@ public class Pokemon {
 
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+
+    public int getBarritaAzul() {
+        return barritaAzul;
+    }
+
+    public void setBarritaAzul(int barritaAzul) {
+        this.barritaAzul = barritaAzul;
     }
 
 }
