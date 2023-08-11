@@ -18,6 +18,7 @@ public class Lab4P2_Equipo10 {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws Exception {
+        int contMovimientos = 0;
         Scanner sc = new Scanner(System.in);
         Scanner leer = new Scanner(System.in);
         ArrayList<Entrenador> entrenadores = new ArrayList();
@@ -60,7 +61,76 @@ public class Lab4P2_Equipo10 {
                         switch (opc) {
                             case 1: {
                                 //capturar pokemon
-                                System.out.println("");
+                                if(contMovimientos < 4){
+                                    System.out.println("Cantidad minima de movimientos disponibles necesaria es 4 \nAgregue mas movimientos antes de atrapar un pokemon");
+                                }else{
+                                    System.out.println("Ingrese que entrenador atrapara el pokemon:");
+                                    ImprimirEntrenador(entrenadores);
+                                    int pos = leer.nextInt();
+                                    while(pos < 0 || pos > entrenadores.size()-1){
+                                        System.out.println("Out of Bounds, Intentelo de nuevo");
+                                        pos = leer.nextInt();
+                                    }
+                                    System.out.println("Ingrese la especie: ");
+                                    String especie = sc.nextLine();
+                                    System.out.println("Ingrese el nivel: ");
+                                    int nivel = leer.nextInt();
+                                    System.out.println("Ingrese la experiencia: ");
+                                    int exp = leer.nextInt();
+                                    System.out.println("Ingrese puntos de experiencia necesarios para subir de nivel: ");
+                                    int ExpNec = leer.nextInt();
+                                    System.out.println("Ingrese cuanta experiencia esta en la barrita azul: ");
+                                    int barritaAzul = leer.nextInt();
+                                    Movimiento [] movez = new Movimiento[4];
+                                    for (int i = 0; i < 3; i++) {
+                                       System.out.println("Ingrese que movimiento agregarle al pokemon: ");
+                                       ImprimirMovimientos(movimientos);
+                                       int Mpos = leer.nextInt();
+                                       while(Mpos < 0 || Mpos > movimientos.size()-1){
+                                           System.out.println("Out of Bounds \nIntentelo de nuevo");
+                                           Mpos = leer.nextInt();
+                                       }//fin valid
+                                       movez[i]=movimientos.get(Mpos);
+                                       movimientos.remove(Mpos);
+                                    }
+                                    System.out.println("Ingrese sus puntos de vida: ");
+                                    int HP = leer.nextInt();
+                                    System.out.println("Ingrese sus puntos de ataque: ");
+                                    int Att = leer.nextInt();
+                                    System.out.println("Ingrese sus puntos de defensa: ");
+                                    int Def = leer.nextInt();
+                                    System.out.println("ingrese sus puntos especiales: ");
+                                    int Esp = leer.nextInt();
+                                    System.out.println("Ingrese sus puntos de velocidad: ");
+                                    int Vel = leer.nextInt();
+                                    String Est = "normal";
+                                    Pokemon pok = new Pokemon(especie, nivel, exp, ExpNec, HP, Att, Def, Esp, Vel, Est, barritaAzul);
+                                    if(entrenadores.get(pos).getEquipo()[5] == null){
+                                        System.out.println("Desea agregarl el pokemon al equipo? 1(si)/2(no)");
+                                        int agE = leer.nextInt();
+                                        while(agE < 1 || agE > 2){
+                                            System.out.println("Desicion invalida, intentelo de nuevo: 1(si)/2(no)");
+                                            agE = leer.nextInt();
+                                        }
+                                        if(agE == 1){
+                                            int index = 0;
+                                            for (int i = 0; i < entrenadores.get(pos).getEquipo().length; i++) {
+                                                if(entrenadores.get(pos).getEquipo()[i] == null){
+                                                    entrenadores.get(pos).getEquipo()[i] = pok;
+                                                    break;
+                                                }
+                                            }//fin for
+                                            System.out.println("Pokemon agregado exitosamente");
+                                        }else{
+                                            entrenadores.get(pos).getCaja().add(pok);
+                                            System.out.println("Pokemon agregado exitosamente");
+                                        }
+                                    }else{//fin si equipo eta vacio
+                                        entrenadores.get(pos).getCaja().add(pok);
+                                        System.out.println("Pokemon agregado exitosamente");
+                                    }
+                                }
+                                
                             }//fin case
                             break;
                             case 2: {
@@ -170,6 +240,7 @@ public class Lab4P2_Equipo10 {
                                 }//fin while
                                 Estado e = new Estado(stat, nombre, descripcion);
                                 movimientos.add(e);
+                                contMovimientos++;
                                 System.out.println("Movimiento agregado exitosamente!");
                             }//fin case
                             break;
@@ -186,6 +257,7 @@ public class Lab4P2_Equipo10 {
                                 int PuntosPre = leer.nextInt();
                                 Fisicos f = new Fisicos(PuntosPod, PuntosPre, nombre, descripcion);
                                 movimientos.add(f);
+                                contMovimientos++;
                                 System.out.println("Movimiento agregado exitosamente!");
                             }//fin case
                             break;
@@ -202,6 +274,7 @@ public class Lab4P2_Equipo10 {
                                 int PuntosPre = leer.nextInt();
                                 Especiales ESP = new Especiales(PuntosPod, PuntosPre, nombre, descripcion);
                                 movimientos.add(ESP);
+                                contMovimientos++;
                                 System.out.println("Movimiento agregado exitosamente!");
                             }//fin case
                             break;
@@ -256,5 +329,11 @@ public class Lab4P2_Equipo10 {
         for (int i = 0; i < entrenadores.size(); i++) {
             System.out.println(i+"- "+entrenadores.get(i).getNombre());
         }
+    }
+    
+    public static void ImprimirMovimientos(ArrayList<Movimiento> moves){
+       for (int i = 0; i < moves.size(); i++) {
+            System.out.println(i+"- "+moves.get(i).getNombre());
+        } 
     }
 }//fin class
