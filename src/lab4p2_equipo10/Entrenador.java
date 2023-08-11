@@ -20,9 +20,9 @@ public class Entrenador {
     public Entrenador() {
     }
 
-    public Entrenador(String Nombre, int Edad, int PokeDolares) {
+    public Entrenador(String Nombre, int Edad, int PokeDolares) throws Exception {
         this.Nombre = Nombre;
-        this.Edad = Edad;
+        setEdad(Edad);
         this.PokeDolares = PokeDolares;
     }
 
@@ -38,8 +38,12 @@ public class Entrenador {
         return Edad;
     }
 
-    public void setEdad(int Edad) {
-        this.Edad = Edad;
+    public void setEdad(int Edad) throws Exception{
+        if(Edad > 0){
+            this.Edad = Edad;
+        }else{
+            throw new Exception();
+        }
     }
 
     public int getPokeDolares() {
