@@ -9,5 +9,6 @@ package lab4p2_equipo10;
  * @author rodge
  */
 public class Movimiento {
-    
+    protected String nombre;
+    protected String descripcion;
 }
