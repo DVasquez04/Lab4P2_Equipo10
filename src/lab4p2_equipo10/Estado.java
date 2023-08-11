@@ -4,21 +4,29 @@
  */
 package lab4p2_equipo10;
 
+import java.util.Random;
+
 /**
  *
  * @author rodge
  */
-public abstract class Movimiento {
-
-    protected String nombre;
-    protected String descripcion;
- 
-    public Movimiento() {
+public class Estado extends Movimiento {
+    private String estado;
+    public Estado() {
+        super();
     }
 
-    public Movimiento(String nombre, String descripcion) {
-        this.nombre = nombre;
-        this.descripcion = descripcion;
+    public Estado(String estado, String nombre, String descripcion) {
+        super(nombre, descripcion);
+        this.estado = estado;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
     public String getNombre() {
@@ -37,10 +45,13 @@ public abstract class Movimiento {
         this.descripcion = descripcion;
     }
 
+  
+
     @Override
-    public String toString() {
-        return "Movimiento{" + "nombre=" + nombre + ", descripcion=" + descripcion + '}';
+    public int Ataque() {
+        Random r = new Random();
+        int random = r.nextInt(1, 100);
+        return random;
     }
 
-    public abstract int  Ataque();
 }
