@@ -20,5 +20,21 @@ public class Pokemon {
     protected int puntosEspecial;
     protected int puntosVelocidad;
     protected String estado;
+
+    public Pokemon() {
+    }
+
+    public Pokemon(String especie, int nivel, int experiencia, int subir_experiencia, int puntosVida, int puntosAtaque, int puntosDefensa, int puntosEspecial, int puntosVelocidad, String estado) {
+        this.especie = especie;
+        this.nivel = nivel;
+        this.experiencia = experiencia;
+        this.subir_experiencia = subir_experiencia;
+        this.puntosVida = puntosVida;
+        this.puntosAtaque = puntosAtaque;
+        this.puntosDefensa = puntosDefensa;
+        this.puntosEspecial = puntosEspecial;
+        this.puntosVelocidad = puntosVelocidad;
+        this.estado = estado;
+    }
     
 }
