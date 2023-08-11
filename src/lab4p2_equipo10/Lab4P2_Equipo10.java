@@ -61,7 +61,7 @@ public class Lab4P2_Equipo10 {
                         switch (opc) {
                             case 1: {
                                 //capturar pokemon
-
+                                System.out.println("");
                                 if (contMovimientos < 4 || entrenadores.isEmpty()) {
                                     System.out.println("Cantidad minima de movimientos disponibles necesaria es 4 \nAgregue mas movimientos antes de atrapar un pokemon");
                                 } else {
