@@ -240,4 +240,21 @@ public class Lab4P2_Equipo10 {
     public static void Ataque(){
         
     }
+    public static void ImprimirEquipo(Pokemon [] equipo){
+        for (int i = 0; i < equipo.length; i++) {
+            System.out.println("Pokemon "+i+" "+equipo[1]+"\n");
+        }
+    }
+    
+    public static void ImprimirCaja(ArrayList<Pokemon> caja ){
+        for (int i = 0; i < caja.size(); i++) {
+            System.out.println(i+"- "+caja.get(i));
+        }
+    }
+    
+    public static void ImprimirEntrenador(ArrayList<Entrenador> entrenadores){
+        for (int i = 0; i < entrenadores.size(); i++) {
+            System.out.println(i+"- "+entrenadores.get(i).getNombre());
+        }
+    }
 }//fin class
