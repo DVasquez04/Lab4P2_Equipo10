@@ -61,13 +61,14 @@ public class Lab4P2_Equipo10 {
                         switch (opc) {
                             case 1: {
                                 //capturar pokemon
-                                if(contMovimientos < 4){
+
+                                if (contMovimientos < 4 || entrenadores.isEmpty()) {
                                     System.out.println("Cantidad minima de movimientos disponibles necesaria es 4 \nAgregue mas movimientos antes de atrapar un pokemon");
-                                }else{
+                                } else {
                                     System.out.println("Ingrese que entrenador atrapara el pokemon:");
                                     ImprimirEntrenador(entrenadores);
                                     int pos = leer.nextInt();
-                                    while(pos < 0 || pos > entrenadores.size()-1){
+                                    while (pos < 0 || pos > entrenadores.size() - 1) {
                                         System.out.println("Out of Bounds, Intentelo de nuevo");
                                         pos = leer.nextInt();
                                     }
@@ -81,17 +82,17 @@ public class Lab4P2_Equipo10 {
                                     int ExpNec = leer.nextInt();
                                     System.out.println("Ingrese cuanta experiencia esta en la barrita azul: ");
                                     int barritaAzul = leer.nextInt();
-                                    Movimiento [] movez = new Movimiento[4];
-                                    for (int i = 0; i < 3; i++) {
-                                       System.out.println("Ingrese que movimiento agregarle al pokemon: ");
-                                       ImprimirMovimientos(movimientos);
-                                       int Mpos = leer.nextInt();
-                                       while(Mpos < 0 || Mpos > movimientos.size()-1){
-                                           System.out.println("Out of Bounds \nIntentelo de nuevo");
-                                           Mpos = leer.nextInt();
-                                       }//fin valid
-                                       movez[i]=movimientos.get(Mpos);
-                                       movimientos.remove(Mpos);
+                                    Movimiento[] movez = new Movimiento[4];
+                                    for (int i = 0; i < 4; i++) {
+                                        System.out.println("Ingrese que movimiento agregarle al pokemon: ");
+                                        ImprimirMovimientos(movimientos);
+                                        int Mpos = leer.nextInt();
+                                        while (Mpos < 0 || Mpos > movimientos.size() - 1) {
+                                            System.out.println("Out of Bounds \nIntentelo de nuevo");
+                                            Mpos = leer.nextInt();
+                                        }//fin valid
+                                        movez[i] = movimientos.get(Mpos);
+                                        movimientos.remove(Mpos);
                                     }
                                     System.out.println("Ingrese sus puntos de vida: ");
                                     int HP = leer.nextInt();
@@ -105,37 +106,42 @@ public class Lab4P2_Equipo10 {
                                     int Vel = leer.nextInt();
                                     String Est = "normal";
                                     Pokemon pok = new Pokemon(especie, nivel, exp, ExpNec, HP, Att, Def, Esp, Vel, Est, barritaAzul);
-                                    if(entrenadores.get(pos).getEquipo()[5] == null){
+                                    if (entrenadores.get(pos).getEquipo()[5] == null) {
                                         System.out.println("Desea agregarl el pokemon al equipo? 1(si)/2(no)");
                                         int agE = leer.nextInt();
-                                        while(agE < 1 || agE > 2){
+                                        while (agE < 1 || agE > 2) {
                                             System.out.println("Desicion invalida, intentelo de nuevo: 1(si)/2(no)");
                                             agE = leer.nextInt();
                                         }
-                                        if(agE == 1){
+                                        if (agE == 1) {
                                             int index = 0;
                                             for (int i = 0; i < entrenadores.get(pos).getEquipo().length; i++) {
-                                                if(entrenadores.get(pos).getEquipo()[i] == null){
+                                                if (entrenadores.get(pos).getEquipo()[i] == null) {
                                                     entrenadores.get(pos).getEquipo()[i] = pok;
                                                     break;
                                                 }
                                             }//fin for
                                             System.out.println("Pokemon agregado exitosamente");
-                                        }else{
+                                        } else {
                                             entrenadores.get(pos).getCaja().add(pok);
                                             System.out.println("Pokemon agregado exitosamente");
                                         }
-                                    }else{//fin si equipo eta vacio
+                                    } else {//fin si equipo eta vacio
                                         entrenadores.get(pos).getCaja().add(pok);
                                         System.out.println("Pokemon agregado exitosamente");
                                     }
                                 }
-                                
+
                             }//fin case
                             break;
                             case 2: {
+                                ImprimirEntrenador(entrenadores);
                                 System.out.println("Ingrese el indice del entrenador : ");
                                 int indexE = sc.nextInt();
+                                while (indexE < 0 || indexE > entrenadores.size() - 1) {
+                                    System.out.println("Ingrese el indice del entrenador : ");
+                                    indexE = sc.nextInt();
+                                }
                                 System.out.println("""
                                                    De donde desea entrenar su pokemon:
                                                    1.Caja
@@ -143,12 +149,14 @@ public class Lab4P2_Equipo10 {
                                 int op = sc.nextInt();
                                 switch (op) {
                                     case 1: {
+                                        ImprimirCaja(entrenadores.get(indexE).getCaja());
                                         System.out.println("Ingrese el indice del pokemon a entrenar: ");
                                         int indexP = sc.nextInt();
                                         Entrenar(entrenadores.get(indexE).getCaja().get(indexP));
                                     }
                                     break;
                                     case 2: {
+                                        ImprimirEquipo(entrenadores.get(indexE).getEquipo());
                                         System.out.println("Ingrese el indice del pokemon a entrenar: ");
                                         int indexP = sc.nextInt();
                                         Pokemon[] x = entrenadores.get(indexE).getEquipo();
@@ -305,35 +313,43 @@ public class Lab4P2_Equipo10 {
         Random r = new Random();
         int random = 0 + r.nextInt(2);
         int random2 = 100 + r.nextInt(4999);
-        int suma = random * random2;
-        int nuevaExperiencia = suma + p.getExperiencia();
-        p.setExperiencia(nuevaExperiencia);
-        System.out.println("Nuevo nivel de experiencia: " + p.getExperiencia());
+        int exp = random * random2;
+        int nuevoNivel = exp / p.getSubir_experiencia();
+        if (nuevoNivel > 0) {
+            p.setNivel(p.getNivel() + nuevoNivel);
+            p.setBarritaAzul(exp % p.getSubir_experiencia());
+        } else {
+            p.setBarritaAzul(exp % p.getSubir_experiencia());
+        }
+        p.setExperiencia(p.getExperiencia() + exp);
+
     }
-    public static void Ataque(){
-        
+
+    public static void Ataque() {
+
     }
-    public static void ImprimirEquipo(Pokemon [] equipo){
+
+    public static void ImprimirEquipo(Pokemon[] equipo) {
         for (int i = 0; i < equipo.length; i++) {
-            System.out.println("Pokemon "+i+" "+equipo[1]+"\n");
+            System.out.println("Pokemon " + i + " " + equipo[1] + "\n");
         }
     }
-    
-    public static void ImprimirCaja(ArrayList<Pokemon> caja ){
+
+    public static void ImprimirCaja(ArrayList<Pokemon> caja) {
         for (int i = 0; i < caja.size(); i++) {
-            System.out.println(i+"- "+caja.get(i));
+            System.out.println(i + "- " + caja.get(i));
         }
     }
-    
-    public static void ImprimirEntrenador(ArrayList<Entrenador> entrenadores){
+
+    public static void ImprimirEntrenador(ArrayList<Entrenador> entrenadores) {
         for (int i = 0; i < entrenadores.size(); i++) {
-            System.out.println(i+"- "+entrenadores.get(i).getNombre());
+            System.out.println(i + "- " + entrenadores.get(i).getNombre());
         }
     }
-    
-    public static void ImprimirMovimientos(ArrayList<Movimiento> moves){
-       for (int i = 0; i < moves.size(); i++) {
-            System.out.println(i+"- "+moves.get(i).getNombre());
-        } 
+
+    public static void ImprimirMovimientos(ArrayList<Movimiento> moves) {
+        for (int i = 0; i < moves.size(); i++) {
+            System.out.println(i + "- " + moves.get(i).getNombre());
+        }
     }
 }//fin class
