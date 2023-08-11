@@ -125,11 +125,13 @@ public class Lab4P2_Equipo10 {
                                         }//fin case
                                         break;
                                         case 4:{
-
+                                            stat = "quemado";
+                                            statusE = false;
                                         }//fin case
                                         break;
                                         case 5:{
-
+                                            stat = "neutral";
+                                            statusE = false;
                                         }//fin case
                                         break;
                                         default:{
@@ -138,19 +140,50 @@ public class Lab4P2_Equipo10 {
                                         break;
                                     }//fin switch
                                 }//fin while
+                                Estado e = new Estado(stat, nombre, descripcion);
+                                movimientos.add(e);
+                                System.out.println("Movimiento agregado exitosamente!");
                             }//fin case
                             break;
                             case 2:{
-                                
+                                System.out.println("Ingrese el nombre del movimiento: ");
+                                String nombre = sc.nextLine();
+                                System.out.println("Ingrese la descripcion del movimiento: ");
+                                sc = new Scanner(System.in);
+                                String descripcion = sc.nextLine();
+                                String stat = "";
+                                System.out.println("Ingrese los puntos de poder: ");
+                                int PuntosPod = leer.nextInt();
+                                System.out.println("Ingrese los puntos de precision: ");
+                                int PuntosPre = leer.nextInt();
+                                Fisicos f = new Fisicos(PuntosPod, PuntosPre, nombre, descripcion);
+                                movimientos.add(f);
+                                System.out.println("Movimiento agregado exitosamente!");
                             }//fin case
                             break;
                             case 3:{
-                                
+                                System.out.println("Ingrese el nombre del movimiento: ");
+                                String nombre = sc.nextLine();
+                                System.out.println("Ingrese la descripcion del movimiento: ");
+                                sc = new Scanner(System.in);
+                                String descripcion = sc.nextLine();
+                                String stat = "";
+                                System.out.println("Ingrese los puntos de poder: ");
+                                int PuntosPod = leer.nextInt();
+                                System.out.println("Ingrese los puntos de precision: ");
+                                int PuntosPre = leer.nextInt();
+                                Especiales ESP = new Especiales(PuntosPod, PuntosPre, nombre, descripcion);
+                                movimientos.add(ESP);
+                                System.out.println("Movimiento agregado exitosamente!");
                             }//fin case
                             break;
                             case 4:{
                                 seg = false;
                             }//fin case
+                            break;
+                            default:{
+                                System.out.println("Opcion invalida, intentelo de nuevo:");
+                            }//fin default
                             break;
                         }//fin switch
                     }//fin while
