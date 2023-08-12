@@ -212,14 +212,28 @@ public class Lab4P2_Equipo10 {
                                             agE = leer.nextInt();
                                         }
                                         if (agE == 1) {
-                                            if (cont <= 12) {
-                                                temp[cont] = pok;
-                                                cont++;
+                                            Pokemon[] equipo = entrenadores.get(pos).getEquipo(); // Obtener el equipo del entrenador
+                                            int equipoSize = 0;
+                                            for (int i = 0; i < equipo.length; i++) {
+                                                if (equipo[i] != null) {
+                                                    equipoSize++;
+                                                }
+                                            }
+
+                                            if (equipoSize < 6) {
+                                                // Buscar la primera posición disponible en el equipo
+                                                for (int i = 0; i < equipo.length; i++) {
+                                                    if (equipo[i] == null) {
+                                                        equipo[i] = pok;
+                                                        System.out.println("Pokémon agregado exitosamente al equipo");
+                                                        break;
+                                                    }
+                                                }
                                             } else {
-                                                System.out.println("El equipo esta lleno");
+                                                System.out.println("El equipo está lleno");
                                             }
                                             //fin for
-                                            ((Entrenador) entrenadores.get(pos)).setEquipo(temp);
+                                            ((Entrenador) entrenadores.get(pos)).setEquipo(equipo);
                                             System.out.println("Pokemon agregado exitosamente");
                                         } else {
                                             entrenadores.get(pos).getCaja().add(pok);
