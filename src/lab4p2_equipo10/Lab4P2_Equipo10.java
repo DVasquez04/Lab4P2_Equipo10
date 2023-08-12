@@ -13,7 +13,8 @@ import java.util.Scanner;
  * @author Diego Vasquez
  */
 public class Lab4P2_Equipo10 {
-
+        static ArrayList<Entrenador> entrenadores = new ArrayList();
+        static ArrayList<Movimiento> movimientos = new ArrayList();
     /**
      * @param args the command line arguments
      */
@@ -22,8 +23,7 @@ public class Lab4P2_Equipo10 {
         int contEntrenadores = 0;
         Scanner sc = new Scanner(System.in);
         Scanner leer = new Scanner(System.in);
-        ArrayList<Entrenador> entrenadores = new ArrayList();
-        ArrayList<Movimiento> movimientos = new ArrayList();
+        
         boolean seguir = true;
         while (seguir) {
             System.out.println("""
@@ -127,7 +127,11 @@ public class Lab4P2_Equipo10 {
                                         pokeE1.setPuntosVida(pokeE2.getMovimientos()[atak2].Ataque(pokeE1, pokeE2));
                                     }
                                 }
-                                
+                                if(pokeE1.getPuntosVida() == 0){
+                                    System.out.println("Entrenador 1 Gana!");
+                                }else{
+                                    System.out.println("Entrenador 2 Gana!");
+                                }
                                 turno++;
                             }//fin if turno
                         }//fin while
