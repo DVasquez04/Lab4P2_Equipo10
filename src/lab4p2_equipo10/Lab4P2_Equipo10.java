@@ -90,6 +90,11 @@ public class Lab4P2_Equipo10 {
                         pokeE2 = entrenadores.get(pos).getEquipo()[indexPok2];
                         //turno par == turno de jugador 1
                         int turno = 0;
+                        if(pokeE1.getPuntosVelocidad() > pokeE2.getPuntosVelocidad()){
+                            turno = 0;
+                        }else{
+                            turno = 1;
+                        }
                         while (pokeE1.getPuntosVida() > 0 && pokeE2.getPuntosVida() > 0) {
                             if (turno % 2 == 0) {
                                 //turno E1
