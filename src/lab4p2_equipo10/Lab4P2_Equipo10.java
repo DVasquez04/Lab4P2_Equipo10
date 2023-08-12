@@ -16,6 +16,7 @@ public class Lab4P2_Equipo10 {
 
     static ArrayList<Entrenador> entrenadores = new ArrayList();
     static ArrayList<Movimiento> movimientos = new ArrayList();
+    static ArrayList<Pokemon> pokemon = new ArrayList();
 
     /**
      * @param args the command line arguments
@@ -90,9 +91,9 @@ public class Lab4P2_Equipo10 {
                         pokeE2 = entrenadores.get(pos).getEquipo()[indexPok2];
                         //turno par == turno de jugador 1
                         int turno = 0;
-                        if(pokeE1.getPuntosVelocidad() > pokeE2.getPuntosVelocidad()){
+                        if (pokeE1.getPuntosVelocidad() > pokeE2.getPuntosVelocidad()) {
                             turno = 0;
-                        }else{
+                        } else {
                             turno = 1;
                         }
                         while (pokeE1.getPuntosVida() > 0 && pokeE2.getPuntosVida() > 0) {
@@ -214,10 +215,13 @@ public class Lab4P2_Equipo10 {
                                             for (int i = 0; i < entrenadores.get(pos).getEquipo().length; i++) {
                                                 if (entrenadores.get(pos).getEquipo()[i] == null) {
                                                     entrenadores.get(pos).getEquipo()[i] = pok;
-                                                    temp[i] = pok;
+                                                    pokemon.add(pok);
                                                     break;
                                                 }
                                             }//fin for
+                                            for (int i = 0; i < temp.length; i++) {
+                                                temp[i] = pokemon.get(i);
+                                            }
                                             entrenadores.get(pos).setEquipo(temp);
                                             System.out.println("Pokemon agregado exitosamente");
                                         } else {
