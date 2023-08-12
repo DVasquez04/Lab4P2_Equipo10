@@ -17,6 +17,8 @@ public class Lab4P2_Equipo10 {
     static ArrayList<Entrenador> entrenadores = new ArrayList();
     static ArrayList<Movimiento> movimientos = new ArrayList();
     static ArrayList<Pokemon> pokemon = new ArrayList();
+    static int cont = 0;
+    static Pokemon[] temp = new Pokemon[6];
 
     /**
      * @param args the command line arguments
@@ -210,14 +212,14 @@ public class Lab4P2_Equipo10 {
                                             agE = leer.nextInt();
                                         }
                                         if (agE == 1) {
-                                            Pokemon [] temp = entrenadores.get(pos).getEquipo();
-                                            for (int i = 0; i < 5; i++) {
-                                                if (temp[i] == null) {
-                                                   temp[i] = pok; 
-                                                   break;
-                                                }
-                                            }//fin for
-                                            entrenadores.get(pos).setEquipo(temp);
+                                            if (cont <= 12) {
+                                                temp[cont] = pok;
+                                                cont++;
+                                            } else {
+                                                System.out.println("El equipo esta lleno");
+                                            }
+                                            //fin for
+                                            ((Entrenador) entrenadores.get(pos)).setEquipo(temp);
                                             System.out.println("Pokemon agregado exitosamente");
                                         } else {
                                             entrenadores.get(pos).getCaja().add(pok);
