@@ -209,19 +209,14 @@ public class Lab4P2_Equipo10 {
                                             System.out.println("Desicion invalida, intentelo de nuevo: 1(si)/2(no)");
                                             agE = leer.nextInt();
                                         }
-                                        Pokemon[] temp = entrenadores.get(pos).getEquipo();
                                         if (agE == 1) {
-                                            int index = 0;
-                                            for (int i = 0; i < entrenadores.get(pos).getEquipo().length; i++) {
-                                                if (entrenadores.get(pos).getEquipo()[i] == null) {
-                                                    entrenadores.get(pos).getEquipo()[i] = pok;
-                                                    pokemon.add(pok);
-                                                    break;
+                                            Pokemon [] temp = entrenadores.get(pos).getEquipo();
+                                            for (int i = 0; i < 5; i++) {
+                                                if (temp[i] == null) {
+                                                   temp[i] = pok; 
+                                                   break;
                                                 }
                                             }//fin for
-                                            for (int i = 0; i < temp.length; i++) {
-                                                temp[i] = pokemon.get(i);
-                                            }
                                             entrenadores.get(pos).setEquipo(temp);
                                             System.out.println("Pokemon agregado exitosamente");
                                         } else {
