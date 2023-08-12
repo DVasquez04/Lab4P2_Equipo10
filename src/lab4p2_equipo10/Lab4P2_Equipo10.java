@@ -91,10 +91,30 @@ public class Lab4P2_Equipo10 {
                         while(pokeE1.getPuntosVida() > 0 && pokeE2.getPuntosVida() > 0){
                             if(turno % 2 == 0){
                                 //turno E1
+                                System.out.println("Ingrese que movimiento usar Entrenador 1:  ");
+                                ImprimirAtaques(pokeE1.getMovimientos());
+                                int atak = leer.nextInt();
+                                while(atak < 0 || atak > pokeE1.getMovimientos().length){
+                                    System.out.println("posicion invalida, intentelo de nuevo: ");
+                                    atak = leer.nextInt();
+                                }
                                 
+                                
+                                
+                                turno++;
                             }else{
                                 //turno E2
+                                System.out.println("Ingrese que movimiento usar Entrenador 2: ");
+                                ImprimirAtaques(pokeE2.getMovimientos());
+                                int atak2 = leer.nextInt();
+                                while(atak2 < 0 || atak2 > pokeE2.getMovimientos().length){
+                                    System.out.println("posicion invalida, intentelo de nuevo: ");
+                                    atak2 = leer.nextInt();
+                                }
                                 
+                                
+                                
+                                turno++;
                             }//fin if turno
                         }//fin while
                     }
@@ -214,7 +234,7 @@ public class Lab4P2_Equipo10 {
                                     }
                                     break;
                                     default: {
-
+                                        System.out.println("Invalido");
                                     }
                                     break;
                                 }
@@ -406,7 +426,7 @@ public class Lab4P2_Equipo10 {
     
     public static void ImprimirAtaques(Movimiento [] moves){
         for (int i = 0; i < moves.length; i++) {
-            System.out.println(i+"- "+"");
+            System.out.println(i+"- "+moves[i]);
         }
     }
 }//fin class
