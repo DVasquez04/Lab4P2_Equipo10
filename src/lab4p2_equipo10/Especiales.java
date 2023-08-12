@@ -5,14 +5,18 @@
 package lab4p2_equipo10;
 
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author rodge
  */
 public class Especiales extends Movimiento {
+
     private int puntosPoder;
     private int puntosPrecision;
+
     public Especiales() {
     }
 
@@ -55,11 +59,40 @@ public class Especiales extends Movimiento {
     }
 
     @Override
-    public int Ataque() {
+    public int Ataque(Pokemon p1, Pokemon p2) {
         Random r = new Random();
-        int random =100+r.nextInt(500);
-        return random;
+        int random1 = 1 + r.nextInt(50);
+        int random = 100 + r.nextInt(500);
+        int suma = p1.puntosEspecial + p2.puntosEspecial;
+        if (suma == random) {
+            try {
+                int resta = random1 * 2;
+                p2.setPuntosVida(p2.getPuntosVida() - resta);
+            } catch (Exception ex) {
+                try {
+                    p2.setPuntosVida(0);
+                } catch (Exception ex1) {
+                    Logger.getLogger(Especiales.class.getName()).log(Level.SEVERE, null, ex1);
+                }
+                Logger.getLogger(Especiales.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        } else {
+
+            try {
+                p2.setPuntosVida(p2.getPuntosVida() - random1);
+            } catch (Exception ex) {
+                try {
+                    p2.setPuntosVida(0);
+                } catch (Exception ex1) {
+                    Logger.getLogger(Especiales.class.getName()).log(Level.SEVERE, null, ex1);
+                }
+                Logger.getLogger(Especiales.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+        return p2.getPuntosVida();
+
     }
 
-    
 }

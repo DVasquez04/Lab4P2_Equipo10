@@ -42,5 +42,5 @@ public abstract class Movimiento {
         return "Movimiento{" + "nombre=" + nombre + ", descripcion=" + descripcion + '}';
     }
 
-    public abstract int  Ataque();
+    public abstract int  Ataque(Pokemon p1,Pokemon p2);
 }

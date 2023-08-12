@@ -44,11 +44,9 @@ public class Pokemon {
         } else {
             throw new Exception();
         }
-        if (puntosVida >= 1) {
+        if (puntosVida >=0) {
             this.puntosVida = puntosVida;
-        } else {
-            throw new Exception();
-        }
+        } 
         if (puntosAtaque > 1) {
             this.puntosAtaque = puntosAtaque;
         } else {
@@ -134,10 +132,7 @@ public class Pokemon {
     public void setPuntosVida(int puntosVida) throws Exception {
         if (puntosVida >= 0) {
             this.puntosVida = puntosVida;
-        } else {
-            throw new Exception();
-        }
-
+        } 
     }
 
     public int getPuntosAtaque() {

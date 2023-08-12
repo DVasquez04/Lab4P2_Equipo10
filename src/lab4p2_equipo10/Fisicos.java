@@ -5,6 +5,8 @@
 package lab4p2_equipo10;
 
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -57,10 +59,47 @@ public class Fisicos extends Movimiento {
     }
 
     @Override
-    public int Ataque() {
+    public int Ataque(Pokemon p1, Pokemon p2) {
         Random r = new Random();
         int random = 1 + r.nextInt(50);
-        return random;
+        if (p1.getPuntosAtaque() > p2.getPuntosDefensa()) {
+            int resta = random * 2;
+            try {
+                p2.setPuntosVida(p2.getPuntosVida() - resta);
+            } catch (Exception ex) {
+                try {
+                    p2.setPuntosVida(0);
+                } catch (Exception ex1) {
+                    Logger.getLogger(Fisicos.class.getName()).log(Level.SEVERE, null, ex1);
+                }
+                Logger.getLogger(Fisicos.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else if (p1.getPuntosAtaque() < p2.getPuntosDefensa()) {
+            int resta = (int) (random * 0.5);
+            try {
+                p2.setPuntosVida(p2.getPuntosVida() - resta);
+            } catch (Exception ex) {
+                try {
+                    p2.setPuntosVida(0);
+                } catch (Exception ex1) {
+                    Logger.getLogger(Fisicos.class.getName()).log(Level.SEVERE, null, ex1);
+                }
+                Logger.getLogger(Fisicos.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else if (p1.getPuntosAtaque() < p2.getPuntosDefensa()) {
+            int resta = random;
+            try {
+                p2.setPuntosVida(p2.getPuntosVida() - resta);
+            } catch (Exception ex) {
+                try {
+                    p2.setPuntosVida(0);
+                } catch (Exception ex1) {
+                    Logger.getLogger(Fisicos.class.getName()).log(Level.SEVERE, null, ex1);
+                }
+                Logger.getLogger(Fisicos.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return p2.getPuntosVida();
     }
 
 }

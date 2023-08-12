@@ -11,7 +11,9 @@ import java.util.Random;
  * @author rodge
  */
 public class Estado extends Movimiento {
+
     private String estado;
+
     public Estado() {
         super();
     }
@@ -45,12 +47,10 @@ public class Estado extends Movimiento {
         this.descripcion = descripcion;
     }
 
-  
-
     @Override
-    public int Ataque() {
+    public int Ataque(Pokemon p1, Pokemon p2) {
         Random r = new Random();
-        int random = 1+r.nextInt(100);
+        int random = 1 + r.nextInt(100);
         return random;
     }
 
