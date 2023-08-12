@@ -64,34 +64,16 @@ public class Especiales extends Movimiento {
         int random1 = 1 + r.nextInt(50);
         int random = 100 + r.nextInt(500);
         int suma = p1.puntosEspecial + p2.puntosEspecial;
+        int resta = 0;
         if (suma == random) {
-            try {
-                int resta = random1 * 2;
-                p2.setPuntosVida(p2.getPuntosVida() - resta);
-            } catch (Exception ex) {
-                try {
-                    p2.setPuntosVida(0);
-                } catch (Exception ex1) {
-                    Logger.getLogger(Especiales.class.getName()).log(Level.SEVERE, null, ex1);
-                }
-                Logger.getLogger(Especiales.class.getName()).log(Level.SEVERE, null, ex);
-            }
+
+            resta = random1 * 2;
 
         } else {
-
-            try {
-                p2.setPuntosVida(p2.getPuntosVida() - random1);
-            } catch (Exception ex) {
-                try {
-                    p2.setPuntosVida(0);
-                } catch (Exception ex1) {
-                    Logger.getLogger(Especiales.class.getName()).log(Level.SEVERE, null, ex1);
-                }
-                Logger.getLogger(Especiales.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            resta = random1;
 
         }
-        return p2.getPuntosVida();
+        return resta;
 
     }
 

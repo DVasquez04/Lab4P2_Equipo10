@@ -104,7 +104,7 @@ public class Lab4P2_Equipo10 {
                                     if (x >= 1 && x <= 75) {
                                         pokeE2.setEstado(((Estado) pokeE1.getMovimientos()[atak]).getEstado());
                                     } else {
-                                        pokeE2.setPuntosVida(pokeE1.getMovimientos()[atak].Ataque(pokeE1, pokeE2));
+                                        pokeE2.setPuntosVida(pokeE2.getPuntosVida()-pokeE1.getMovimientos()[atak].Ataque(pokeE1, pokeE2));
                                     }
                                 }
                                 
@@ -124,7 +124,7 @@ public class Lab4P2_Equipo10 {
                                     if (x >= 1 && x <= 75) {
                                         pokeE1.setEstado(((Estado) pokeE2.getMovimientos()[atak2]).getEstado());
                                     } else {
-                                        pokeE1.setPuntosVida(pokeE2.getMovimientos()[atak2].Ataque(pokeE1, pokeE2));
+                                        pokeE1.setPuntosVida(pokeE1.getPuntosVida()-pokeE2.getMovimientos()[atak2].Ataque(pokeE1, pokeE2));
                                     }
                                 }
                                 if(pokeE1.getPuntosVida() == 0){

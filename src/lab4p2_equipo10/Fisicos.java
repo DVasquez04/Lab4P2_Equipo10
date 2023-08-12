@@ -62,44 +62,15 @@ public class Fisicos extends Movimiento {
     public int Ataque(Pokemon p1, Pokemon p2) {
         Random r = new Random();
         int random = 1 + r.nextInt(50);
+        int resta = 0;
         if (p1.getPuntosAtaque() > p2.getPuntosDefensa()) {
-            int resta = random * 2;
-            try {
-                p2.setPuntosVida(p2.getPuntosVida() - resta);
-            } catch (Exception ex) {
-                try {
-                    p2.setPuntosVida(0);
-                } catch (Exception ex1) {
-                    Logger.getLogger(Fisicos.class.getName()).log(Level.SEVERE, null, ex1);
-                }
-                Logger.getLogger(Fisicos.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            resta = random * 2;
         } else if (p1.getPuntosAtaque() < p2.getPuntosDefensa()) {
-            int resta = (int) (random * 0.5);
-            try {
-                p2.setPuntosVida(p2.getPuntosVida() - resta);
-            } catch (Exception ex) {
-                try {
-                    p2.setPuntosVida(0);
-                } catch (Exception ex1) {
-                    Logger.getLogger(Fisicos.class.getName()).log(Level.SEVERE, null, ex1);
-                }
-                Logger.getLogger(Fisicos.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            resta = (int) (random * 0.5);
         } else if (p1.getPuntosAtaque() < p2.getPuntosDefensa()) {
-            int resta = random;
-            try {
-                p2.setPuntosVida(p2.getPuntosVida() - resta);
-            } catch (Exception ex) {
-                try {
-                    p2.setPuntosVida(0);
-                } catch (Exception ex1) {
-                    Logger.getLogger(Fisicos.class.getName()).log(Level.SEVERE, null, ex1);
-                }
-                Logger.getLogger(Fisicos.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            resta = random;
         }
-        return p2.getPuntosVida();
+        return resta;
     }
 
 }
